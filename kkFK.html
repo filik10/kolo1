@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<title> SPMIAS</title>
+<meta charset="UTF-8" >
+<script src="miasta.js"></script>
+<script src="miasta-db.js"></script>
+<script> 
+function Oblicz() {
+var nazwa1 = document.querySelector("#cel").value
+var miasto1 = Miasta.find(x => x.name == nazwa1)
+document.querySelector("#punkt").value = miasto1.gps.map( x => x.toFixed(3)).join(" ,")
+}
+</script>
+</head>
+<body>
+<h1> Witaj drogi turysto</h1>
+<h2> Gdzie jedziesz? <input id="cel" value="Warszawa"> </h2>
+<h2> Skąd jedziesz? <input id="początek" value="Puławy"> </h2>
+<h2> Gdzie odpoczniesz? <input id="przystanek" value="Garwolin"> </h2>
+<p>
+<button onclik="Oblicz()"> Jak daleko?</button>
+</p>
+<h3> Współrzędne miasta1 <output id="punkt"></output></h3>
+<h3> Współrzędne miasta2 <output id="y"></output></h3>
+<h3> Współrzędne miasta3 <output id="x"></output></h3>
+
+<h3> Odległość miasta 1do 2 <output id="km1"></output></h3>
+<h3> Odległość miasta 2do 3 <output id="km2"></output></h3>
+<h3> Odległość miasta 1do 3 <output id="km3"></output></h3>
+
+<h3> Lista miast <output id="miasta"/></h3>
+
+<h3> Liba miast <output id="liczba"/></h3>
+
+
+
+</body>
+</html>

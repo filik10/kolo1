@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<!--
+	Ethereal by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Sprawdzian</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src = "miasta-db.js"></script>
+        <script src = "miasta.js"></script>
+        <script>
+function start (){
+    var nazwa1 = document.querySelector("#miastoa").value
+      var miasto1 = Miasta.find(x => x.name == nazwa1)
+      document.querySelector("#a").value = miasto1.gps.map( x => x.toFixed( 3 ) ).join(" , ")
+      var nazwa2 = document.querySelector("#miastob").value
+      var miasto2 = Miasta.find(x => x.name == nazwa2)
+	  document.querySelector("#f").value = miasto2.gps.map( x => x.toFixed( 3 ) ).join(" , ")
+      var nazwa2 = document.querySelector("#miastoc").value
+      var miasto3 = Miasta.find(x => x.name == nazwa2)
+	  document.querySelector("#g").value = miasto3.gps.map( x => x.toFixed( 3 ) ).join(" , ")
+	  
+      document.querySelector("#b").value = ( town_dist( miasto1, miasto2 ) ).toFixed(1) + " km"
+      document.querySelector("#c").value = ( town_dist( miasto1, miasto3 ) ).toFixed(1) + " km"
+	  
+     tab =[]
+      for (i=0; i<Miasta.length; i++){
+        if( ( town_dist(miasto1, Miasta[i]) < ( town_dist( miasto1, miasto3 ) )) && town_dist( miasto1, Miasta[i]) > town_dist( miasto1, miasto2 ))
+
+               tab.push(Miasta[i].name)}
+	
+               document.querySelector("#d").value = tab.length
+               document.querySelector("#e").value = tab.join(", ")
+}
+        </script>
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						<!-- Panel (Banner) -->
+							<section class="panel banner right">
+								<div class="content color0 span-3-75">
+									<h1 class="major">Witaj. Zobacz miasta - <br/>Sprawdzian 1</h1>
+ <p>Miasto A: <input style ="color: rgb(0, 0, 0)"id= "miastoa" value="Warszawa"></p>
+        <p>Miasto B: <input style ="color: rgb(0, 0, 0)" id= "miastob" value="Piaseczno"></p>
+        <p>Miasto C: <input style ="color: rgb(0, 0, 0)" id= "miastoc" value="Radom"></p>
+        <button onclick="start()">Znajdź</button>
+									<ul class="actions">
+										<li><a href="#first" class="button special color1 circle icon fa-angle-right">Next</a></li>
+									</ul>
+								</div>
+								<div class="image filtered span-1-75" data-position="25% 25%">
+									<img src="images/pic01.jpg" alt="" />
+								</div>
+							</section>
+
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight medium right" id="first">
+								<div class="content span-7">
+									<h2 class="major">Wspórzędne</h2>
+									<p>Współrzędne miasta A: <output id="a"></output></p>
+		<p>Współrzędne miasta B: <output id="f"></output></p>
+		<p>Współrzędne miasta C: <output id="g"></output></p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="images/pic02.jpg" alt="" />
+								</div>
+							</section>
+						<!-- Panel -->
+							<section class="panel spotlight medium right" id="first">
+								<div class="content span-7">
+									<h2 class="major">Odległość</h2>
+									<p>Odległość AB: <output id="b"></output></p>
+        <p>Odległość AC: <output id="c"></output></p>
+        <p>Liczba miast oddalonych od A bardziej niż B ale mniejszych od C: <output id="d"></output></p>
+        <p>Miasta: <output id="e"></output></p>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="images/pic02.jpg" alt="" />
+								</div>
+							</section>
+
+						<!-- Copyright -->
+							<div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
